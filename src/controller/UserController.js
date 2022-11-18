@@ -18,7 +18,9 @@ class UserController {
             [name, email, passwordHash]
         )
         
-        return response.status(201).json();
+        return response.status(201).json({
+            message: "Usuário criado com sucesso"
+        });
         
     }
 
@@ -69,7 +71,9 @@ class UserController {
             WHERE id = ?`,
             [user.name, user.email, user.password, user.id]
         );
-        return response.json()
+        return response.json({
+            message: "Usuário atualizado com sucesso"
+        })
 
     };
 
@@ -85,7 +89,7 @@ class UserController {
         await database.run("DELETE FROM users WHERE id = (?)", [id])
 
         return response.json({
-            message: "Usuario deletado com sucesso"
+            message: "Usuário deletado com sucesso"
         })
     }
 };
